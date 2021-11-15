@@ -51,7 +51,7 @@ function App() {
 </AppBar>
     </div>
     <div className='App-header'>
-      <img src ={image} height='60%' width='60%'/>
+      <img src ={image} height='350px' width='350px'/>
       <div style={{ height: '20px' }}/>
      <Stack direction="row" alignItems="center" spacing={3}>
      <label htmlFor="contained-button-file">
