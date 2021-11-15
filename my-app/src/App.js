@@ -1,14 +1,16 @@
 import './App.css';
+import * as React from 'react';
 import {AppBar,Toolbar,Typography} from '@mui/material/';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
-import { green, orange, purple, yellow } from '@mui/material/colors';
+import { green, orange, purple} from '@mui/material/colors';
 import Box from '@mui/material/Box';
+
 
 function App() {
 
-
+  const [image,setImage] = React.useState('/Group 5.png')
   const Input = styled('input')({
     display: 'none',
   });
@@ -28,6 +30,15 @@ function App() {
     },
   }));
 
+
+  const onImageChange = event => {
+    console.log(event.target.files)
+    if (event.target.files && event.target.files[0]) {
+      let img = event.target.files[0];
+      setImage(URL.createObjectURL(img))
+    }
+  };
+  
   return (
     <div className='App'>
     <div style={{ width: '100%' }}>
@@ -40,9 +51,11 @@ function App() {
 </AppBar>
     </div>
     <div className='App-header'>
-    <Stack direction="row" alignItems="center" spacing={3}>
-    <label htmlFor="contained-button-file">
-        <Input accept="image/*" id="contained-button-file" multiple type="file" />
+      <img src ={image} height='60%' width='60%'/>
+      <div style={{ height: '20px' }}/>
+     <Stack direction="row" alignItems="center" spacing={3}>
+     <label htmlFor="contained-button-file">
+        <Input accept="image/*" id="contained-button-file" multiple type="file" onChange={onImageChange}/>
         <ColorButton variant="contained" component="span" size="large">
           Upload Image
         </ColorButton>
