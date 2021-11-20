@@ -6,11 +6,24 @@ import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import { green, orange, purple} from '@mui/material/colors';
 import Box from '@mui/material/Box';
-
+import {useState, useEffect} from 'react';
 
 function App() {
 
-  const [image,setImage] = React.useState('/Group 5.png')
+  //Test API
+  const[data, setData] = useState([{}])  
+  useEffect(() => {
+    fetch("/upload").then(
+      res => res.json()
+    ).then(
+      data => {
+        setData(data)
+        console.log(data)
+      }
+    )
+  }, [])
+
+  const [image,setImage] = React.useState('/Image.png')
   const Input = styled('input')({
     display: 'none',
   });
@@ -51,7 +64,7 @@ function App() {
 </AppBar>
     </div>
     <div className='App-header'>
-      <img src ={image} height='350px' width='350px'/>
+      <img src ={image} height='350px' width='450px'/>
       <div style={{ height: '20px' }}/>
      <Stack direction="row" alignItems="center" spacing={3}>
      <label htmlFor="contained-button-file">
